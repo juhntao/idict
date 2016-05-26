@@ -21,7 +21,8 @@
 
   "content_scripts": [ {
     "all_frames": true,
-    "js": ["lib/Zepto.js", "js/tipview.js", "/js/content.js"],
+    "css":["css/content.css"],
+    "js": ["lib/Zepto.js", "js/tipview.js", "/js/selection.js"],
     "matches": ["<all_urls>"]
       
   } ],
@@ -32,7 +33,7 @@
       "19": "img/icon19.png"
     }
   },
-  "web_accessible_resources": [ "TipView.html" ],
+  "web_accessible_resources": [ "TipView.html","img/icon19.png" ],
   "icons": { 
     "16": "img/icon16.png",
     "48": "img/icon48.png",

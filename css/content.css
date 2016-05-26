@@ -1,0 +1,13 @@
+.selectbox{
+    opacity: 0.5;
+    position: absolute;
+    padding: 0px;
+    margin: 0px;
+    z-index: 1000000;
+    display: inline;
+    text-align: left;
+    cursor: pointer;
+}
+.selectbox:hover{
+    opacity:1;
+}
