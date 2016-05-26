@@ -24,15 +24,10 @@ function createSelectBox(){
                 '</div>';
     $("body").append(html);
     
-    $("selectbox").on("mouseover", function(){
-        $(".selectbox").css("opacity", 1);
-    })
-    $("selectbox").on("mouseout", function(){
-        $(".selectbox").css("opacity", 0.5);
-    })
-    $("selectbox").on("mousedown", function(){
-        console.log("selectbox mousedown");
-    })
+    $(".selectbox").on("mousedown", function(){
+        m_is_dict_box_show = true;
+        showDictBox();
+    });
 }
 
 function showSelectBox(x, y){
@@ -44,11 +39,6 @@ function hideSelectBox(){
     $(".selectbox").hide();
 }
 
-$(".selectbox").on("mousedown", function(){
-    m_is_dict_box_show = true;
-    showDictBox();
-});
-
 function showDictBox(){
     hideSelectBox();
     var selection = window.getSelection();
@@ -58,7 +48,7 @@ function showDictBox(){
     if (selectText === "" || !(/^[^\u4e00-\u9fa5]+$/.test(selectText)))
         return hideDictBox();
 
-    console.log(selection,selectText);
+    console.log("select text:",selectText);
     showLoadingTipView(selectRange, selectText);
     $("#idict").on("mouseleave", function() {
         hideDictBox();

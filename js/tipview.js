@@ -73,7 +73,7 @@ function setTipViewContent(content){
     content.spells.forEach(function(spell){
         var p = $("<p />");
         p.append("<b />");
-        p.append("<a href='javascript:void(0);' onclick='this.querySelector('audio').play();'><audio/></a>");
+        p.append("<a href='javascript:void(0);' onclick='this.querySelector(\"audio\").play();'><audio/></a>");
         p.find("b").html(spell.phonetic);
         p.find("a audio").attr("src", spell.sound);
         $("#idict .result .dict-spell").append(p);
