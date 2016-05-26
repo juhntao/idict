@@ -1,0 +1,15 @@
+{
+  "name": "idict",
+  "version": "1.0.0",
+  "description": "idict",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dictionary",
+    "translate"
+  ],
+  "author": "juhntao@live.com",
+  "license": "ISC"
+}

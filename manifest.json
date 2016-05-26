@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "idict",
+  "version": "0.0.1",
+  "description": "",
+
+  "permissions": [
+    "http://*.shanbay.com/*",
+    "https://*.shanbay.com/*",
+    "contextMenus",
+    "tabs",
+    "storage",
+    "notifications"
+  ],
+  "options_page": "options.html",
+
+  "background": {
+      "persistent": true,
+      "scripts": ["lib/Zepto.js", "lib/config.js", "lib/shanbay_oauth2.js", "js/shanbay.api.js", "js/background.js"]
+   },
+
+  "content_scripts": [ {
+    "all_frames": true,
+    "js": ["lib/Zepto.js", "js/tipview.js", "/js/content.js"],
+    "matches": ["<all_urls>"]
+      
+  } ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "38": "img/icon38.png",
+      "19": "img/icon19.png"
+    }
+  },
+  "web_accessible_resources": [ "TipView.html" ],
+  "icons": { 
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png" 
+  }
+}
