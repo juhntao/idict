@@ -33,7 +33,7 @@
       "19": "img/icon19.png"
     }
   },
-  "web_accessible_resources": [ "TipView.html","img/icon19.png" ],
+  "web_accessible_resources": [ "TipView.html","img/icon19.png", "welcome.html" ],
   "icons": { 
     "16": "img/icon16.png",
     "48": "img/icon48.png",

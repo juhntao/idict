@@ -19,4 +19,13 @@ function translate(q, callback) {
     api.translate(q, callback);
 }
 
+chrome.runtime.onInstalled.addListener(function(details){
+    if(details.reason == "install"){
+        chrome.tabs.create({
+            url: "welcome.html"
+        }, function(tab) {
+            tab ? chrome.windows.update(tab.windowId, { focused: true }) : chrome.windows.create({ url: "first.html", focused: true });
+        });
+    }
+});
 
