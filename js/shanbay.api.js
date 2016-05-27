@@ -60,7 +60,7 @@ var shanbayApi = function(){
             }
         }catch(error){
             resultObj.status="error";
-            resultObj.message="Error:服务器开小差了，你可以点击下方的[查看更多]来获取帮助";
+            resultObj.message="Error:服务器开小差了";
         }
         return resultObj;
     }

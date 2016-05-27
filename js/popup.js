@@ -49,6 +49,44 @@ function renderUser(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    renderUser();
+    // renderUser();
+    document.querySelector("#searchInput").onkeydown = function(event){
+        if(this.value=="") return;
+        if(event.keyCode == 13){
+            document.querySelector("#contentContainer .error").style.display="none";
+            document.querySelector("#contentContainer .result").style.display="none";
+            document.querySelector("#contentContainer .tip").style.display="";
+            document.querySelector("#contentContainer .tip").innerText="正在翻译...";
+            chrome.runtime.sendMessage({action:'translate', q:this.value}, function(response){
+                if(chrome.runtime.lastError){
+                    console.log(chrome.runtime.lastError);
+                }
+                buildResult(response);
+            });
+        }
+    }
 });
+function buildResult(response){
+    if(response.status == "ok"){
+        document.querySelector("#contentContainer .error").style.display="none";
+        document.querySelector("#contentContainer .tip").style.display="none";
+        document.querySelector("#contentContainer .result").style.display="";
+        var html = "<div class='dict-spell'>";
+        response.spells.forEach(function(spell){
+            html += 
+            "<p><b>"+spell.phonetic+"</b><a href='javascript:void(0);' onclick='this.querySelector(\"audio\").play();'><audio href='"+spell.sound+"'/></a></p>";
+        });
+        html+="</div><div class='dict-comment'>";
+        response.comments.forEach(function(comment){
+            html+="<p>"+comment+"</p>";
+        });
+         html+="</div>"
+        document.querySelector("#contentContainer .result").innerHTML = html;
+    }else{
+        document.querySelector("#contentContainer .error").innerText = response.message;
+        document.querySelector("#contentContainer .error").style.display="";
+        document.querySelector("#contentContainer .tip").style.display="none";
+        document.querySelector("#contentContainer .result").style.display="none";
+    }
+}
 

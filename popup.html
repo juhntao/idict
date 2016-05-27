@@ -1,28 +1,138 @@
 <!doctype html>
 <html>
     <head>
-        <title>Shanbay Oauth2 Demo</title>
+        <title>idict</title>
         <style>
-            body {
-            min-width: 357px;
-            overflow-x: hidden;
+            body{
+                font-size: 14px;
+                width: 350px;
+                font-family: 'Open Sans', sans-serif;
+                padding: 0;
+                margin: 0;
             }
-            img {
-            margin: 5px;
-            border: 2px solid black;
-            vertical-align: middle;
-            width: 75px;
-            height: 75px;
+            a{
+                text-decoration:none;
             }
-            #logout{position:absolute;right:2px;bottom:5px;cursor:pointer;}
+            #searchContainer{
+                display: block;
+                padding: 10px;
+            }
+            .header{
+                background-color: #F4F4F4;
+                border-bottom: 1px solid #CACACA;
+            }
+            .searchInput {
+                font-size: 16px;
+                height: 30px;
+                padding: 0 2px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: #A7AFBA;
+                box-sizing: border-box;
+                width: 100%;
+                color: #000;
+                background-color: #FFF;
+                padding: 0 5px;
+                background-repeat: no-repeat;
+                background-position: 10px center;
+            }
+            #contentContainer{
+                display: block;
+                padding: 10px;
+                min-height: 50px;
+            }
+            .dict-spell p{
+                display: block;
+                font-size: 14px;
+            }
+            .dict-spell p a{
+                background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcUlEQVQ4y2P4//8/AyUYQhAH3gNxA7IAIQPmo/H3g/QA8XkgFiBkwHyoYnRQABVfj88AmGZcTuuHyjlgMwBZM7IE3NlQGhQe65EN+I8Dw8MLGgYoFpFqADK/YUAMwOsFigORatFIlYRElaRMWmaiBAMAp0n+3U0kqkAAAAAASUVORK5CYII=");
+                cursor: pointer;
+                opacity: 0.5;
+                width: 16px;
+                height: 16px;
+                margin-left: 8px;
+                display: inline-block;
+                position: relative;
+                top: 2px;
+                background-position: 50% 100%;
+                background-repeat: no-repeat;
+            }
+            .dict-spell p span, .dict-spell p b, .dict-spell p a {
+                display: inline-block;
+                vertical-align: baseline;
+            }
+            .dict-spell p b:before{
+                content:"["
+            }
+            .dict-spell p b:after{
+                content:"]"
+            }
+            .dict-spell p a:hover{
+                opacity: 1;
+            }
+            
+            .dict-comment{
+                padding: 5px 0;
+            }
+            #footerContainer{
+                display: block;
+                padding: 10px;
+                height: 25px;
+            }
+            .footer{
+                background-color: #f0f0f0;
+                border-top: 1px solid #CACACA;
+            }
+            .footer div{
+                line-height:25px;
+                text-align:center;
+            }
+            .footer .options{
+                height: 100%;
+                width: 20%;
+                float: left;
+            }
+            .footer .home{
+                height: 100%;
+                width: 40%;
+                float: left;
+            }
+            .footer .status{
+                height: 100%;
+                width: 40%;
+                float: left;
+            }
         </style>
     </head>
     <body>
-        <div id="user" class="">
-            <a id="home" href=""><img id="avatar"></img><span id="nickname"></span></a>
+        <div id="searchContainer" class="header">
+            <div class="searchInputContainer">
+                <input id="searchInput" 
+                class="searchInput" 
+                type="text" 
+                placeholder="请输入查询关键字" 
+                autofocus="autofocus"
+                tabindex="1"/>
+            </div>
         </div>
-        <div id="logout" class="">
-            <u>退出</u>
+        <div id="contentContainer">
+            <div class="tip">输入要查询的词，然后按回车。也可以直接在页面上选择词，进行划词翻译。</div>
+            <div class="error" style="display:none;color:red;">error</div>
+            <div class="result" style="display:none;">result</div>
+        </div>
+        <div id="footerContainer" class="footer">
+            <div class="options">
+                <a href="options.html" class="options" title="配置" class="item" target="_blank">
+                    <img src="/img/settings.png">
+                </a>
+            </div>
+            <div class="home">
+                <a href="https://github.com/juhntao/idict" target="_blank" id="homepage" class="item">项目主页</a>
+            </div>
+            <div class="status">
+                <a href="javascript:void()" id="logstatus" class="item"></a>
+            </div>
         </div>
         <script src="js/popup.js"></script>
     </body>
