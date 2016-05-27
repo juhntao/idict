@@ -48,13 +48,19 @@ var shanbayApi = function(){
     }
     
     function parseResult(result) {
-        var resultObj = parseResultCode(result.errorCode);
-        resultObj._rawResult = result;
-        resultObj.spells = [];
-        resultObj.comments = [];
-        if (resultObj.status == "ok") {
-            resultObj.spells.push({phonetic:result.data.pronunciation,sound:result.data.audio});
-            resultObj.comments = result.data.definition.split("\n");
+        var resultObj;
+        try{
+            resultObj = parseResultCode(result.errorCode);
+            resultObj._rawResult = result;
+            resultObj.spells = [];
+            resultObj.comments = [];
+            if (resultObj.status == "ok") {
+                resultObj.spells.push({phonetic:result.data.pronunciation,sound:result.data.audio});
+                resultObj.comments = result.data.definition.split("\n");
+            }
+        }catch(error){
+            resultObj.status="error";
+            resultObj.message="Error:服务器开小差了，你可以点击下方的[查看更多]来获取帮助";
         }
         return resultObj;
     }

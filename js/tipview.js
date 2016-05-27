@@ -26,7 +26,8 @@ function showErrorTipView(error){
     $("#idict .error-tip").show();
     $("#idict .error-tip").html(error)
     $("#idict .result").hide();
-    $("#idict .more").hide();
+    $("#idict .content .more a").attr("href","http://fanyi.baidu.com/#en/zh/" + getTextWord());
+    $("#idict .more").show();
     $("#idict").show();
 }
 

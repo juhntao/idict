@@ -54,6 +54,7 @@ function showDictBox(){
     
     if (!(/^[^\u4e00-\u9fa5]+$/.test(selectText))){ 
         //如果选择的是汉字
+        showErrorTipView("~!~  你选择的好像是中文")
     }else{
         chrome.runtime.sendMessage({action:'translate', q:selectText}, function(response){
             if(chrome.runtime.lastError){
