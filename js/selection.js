@@ -45,25 +45,28 @@ function showDictBox(){
     if(!selection) return hideDictBox();
     var selectRange = selection.getRangeAt(0).getBoundingClientRect();
     var selectText = selection.toString().trim();
-    if (selectText === "" || !(/^[^\u4e00-\u9fa5]+$/.test(selectText)))
-        return hideDictBox();
 
     console.log("select text:",selectText);
     showLoadingTipView(selectRange, selectText);
     $("#idict").on("mouseleave", function() {
         hideDictBox();
     });
-    chrome.runtime.sendMessage({action:'translate', q:selectText}, function(response){
-        if(chrome.runtime.lastError){
-            console.log(chrome.runtime.lastError);
-        }
-        console.log(response);
-        if(response.status == "ok"){
-            setTipViewContent(response);
-        }else{
-            showErrorTipView(response.message)
-        }
-    });
+    
+    if (!(/^[^\u4e00-\u9fa5]+$/.test(selectText))){ 
+        //如果选择的是汉字
+    }else{
+        chrome.runtime.sendMessage({action:'translate', q:selectText}, function(response){
+            if(chrome.runtime.lastError){
+                console.log(chrome.runtime.lastError);
+            }
+            console.log(response);
+            if(response.status == "ok"){
+                setTipViewContent(response);
+            }else{
+                showErrorTipView(response.message)
+            }
+        });
+    }
 }
 
 function hideDictBox(){
