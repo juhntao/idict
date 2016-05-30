@@ -71,17 +71,31 @@ function buildResult(response){
         document.querySelector("#contentContainer .error").style.display="none";
         document.querySelector("#contentContainer .tip").style.display="none";
         document.querySelector("#contentContainer .result").style.display="";
-        var html = "<div class='dict-spell'>";
+        
+        document.querySelector("#contentContainer .result .dict-spell").innerHTML = "";
         response.spells.forEach(function(spell){
-            html += 
-            "<p><b>"+spell.phonetic+"</b><a href='javascript:void(0);' onclick='this.querySelector(\"audio\").play();'><audio href='"+spell.sound+"'/></a></p>";
+            var p = document.createElement("p");
+            var b = document.createElement("b");
+            b.innerHTML = spell.phonetic;
+            p.appendChild(b);
+            var a = document.createElement("a");
+            a.onclick=function(){
+                this.querySelector('audio').play();
+            }
+            
+            var audio = document.createElement("audio");
+            audio.src = spell.sound;
+            a.appendChild(audio);
+            p.appendChild(a);
+            document.querySelector("#contentContainer .result .dict-spell").appendChild(p);
         });
-        html+="</div><div class='dict-comment'>";
+        
+        document.querySelector("#contentContainer .result .dict-comment").innerHTML = "";
         response.comments.forEach(function(comment){
-            html+="<p>"+comment+"</p>";
+            var p = document.createElement("p");
+            p.innerHTML = comment;
+            document.querySelector("#contentContainer .result .dict-comment").appendChild(p);
         });
-         html+="</div>"
-        document.querySelector("#contentContainer .result").innerHTML = html;
     }else{
         document.querySelector("#contentContainer .error").innerText = response.message;
         document.querySelector("#contentContainer .error").style.display="";
