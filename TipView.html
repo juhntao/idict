@@ -1,157 +1,205 @@
 <style>
-  body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
-    margin: 0;
-    padding: 0;
-  }
-  .result-container a {
-    text-decoration: none;
-    color: #666;
-  }
-  .result-container{
-    width: 250px;
-    text-shadow: none;
-    background-color: #ffffdd;
-    text-align: left;
-    color: #222222;
-    padding: 10px;
-    margin: 0px;
-    opacity: 1;
-    border: 1px solid #999999;
-    border-radius: 4px;
-    z-index: 999997;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    position: absolute;
-    text-decoration: none;
-    line-height: normal;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    -webkit-animation: fade-in 0.3s ease;
-    -moz-animation: fade-in 0.3s ease;
-    -o-animation: fade-in 0.3s ease;
-    animation: fade-in 0.3s ease;
-  }
-  .result-container .tip-arrow {
-    width: 0;
-    height: 0;
-    font-size: 0;
-    line-height: 0;
-    display: block;
-    position: absolute;
-    top: -25px;
-  }
-  .result-container .tip-arrow em, .result-container .tip-arrow ins {
-    width: 0;
-    height: 0;
-    font-size: 0;
-    line-height: 0;
-    display: block;
-    position: absolute;
-    border: 12px solid transparent;
-    border-style: dashed dashed solid dashed;
-  }
-  .result-container .tip-arrow em {
-    border-bottom-color: #999999;
-  }
-  .result-container .tip-arrow ins {
-    border-bottom-color: #ffffdd;
-    top: 2px;
-  }
-  .result-container .title{
-    background-color: #ffffdd;
-    border: none;
-    color: #222222;
-    display: block;
-    max-width: 100%;
-  }
-  .result-container .title span{
-    position: relative;
-    max-width: 100%;
-    text-align: left;
-    font-size: 18px;
-    font-weight:bold;
-  }
-  .result-container .content{
-    font: 12px "microsoft yahei",arail;
-    padding: 0;
-  }
-  .result-container .content .result{
-    font-size: 12px;
-    overflow: hidden;
-    border-bottom: 1px solid #efefef;
-    padding: 8px 0;
-  }
-  
-  .dict-spell p{
-    display: block;
-    font-size: 14px;
-  }
-  .dict-spell p a{
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcUlEQVQ4y2P4//8/AyUYQhAH3gNxA7IAIQPmo/H3g/QA8XkgFiBkwHyoYnRQABVfj88AmGZcTuuHyjlgMwBZM7IE3NlQGhQe65EN+I8Dw8MLGgYoFpFqADK/YUAMwOsFigORatFIlYRElaRMWmaiBAMAp0n+3U0kqkAAAAAASUVORK5CYII=");
-    cursor: pointer;
-    opacity: 0.5;
-    width: 16px;
-    height: 16px;
-    margin-left: 8px;
-    display: inline-block;
-    position: relative;
-    top: 2px;
-    background-position: 50% 100%;
-    background-repeat: no-repeat;
-  }
-  .dict-spell p span, .dict-spell p b, .dict-spell p a {
-    display: inline-block;
-    vertical-align: baseline;
-  }
-  .dict-spell p b:before{
-    content:"["
-  }
-  .dict-spell p b:after{
-    content:"]"
-  }
-  .dict-spell p a:hover{
-    opacity: 1;
-  }
-  
-  .dict-comment{
-    padding: 5px 0;
-  }
-  .result-container .content .more{
-    padding-top: 8px;
-  }
-  
+    body,
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    code,
+    form,
+    fieldset,
+    legend,
+    input,
+    textarea,
+    p,
+    blockquote,
+    th,
+    td {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .result-container a {
+        text-decoration: none;
+        color: #666;
+    }
+    
+    .result-container:before {
+        content: "";
+        border-style: solid;
+        border-width: 0 15px 15px 15px; 
+        border-color: transparent transparent #fff transparent;
+        height: 0;
+        width: 0;
+        position: absolute;
+        left: 45%;
+        top: -10px;  
+    }
+    
+    .result-container {
+        width: 250px;
+        text-shadow: none;
+        background-color: #fff;
+        padding:5px 10px;
+        margin: 0;
+        opacity: 1;
+        border: 1px solid #fff;
+        z-index: 999997;
+        position: absolute;
+        text-align: left;
+        color: #222222;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+        font-size: 14px;
+        text-decoration: none;
+        line-height: normal;
+        box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0px 5px  20px rgba(0, 0, 0, 0.5);
+        -webkit-animation: fade-in 0.3s ease;
+        animation: fade-in 0.3s ease;
+    }
+    
+    .result-container .tip-arrow {
+        width: 0;
+        height: 0;
+        font-size: 0;
+        line-height: 0;
+        display: block;
+        position: absolute;
+        top: -25px;
+    }
+    
+    .result-container .tip-arrow em,
+    .result-container .tip-arrow ins {
+        width: 0;
+        height: 0;
+        font-size: 0;
+        line-height: 0;
+        display: block;
+        position: absolute;
+        border: 12px solid transparent;
+        border-style: dashed dashed solid dashed;
+    }
+    
+    .result-container .tip-arrow em {
+        border-bottom-color: #999999;
+    }
+    
+    .result-container .tip-arrow ins {
+        top: 2px;
+    }
+    
+    .result-container .title {
+        color: #222222;
+        display: block;
+        line-height: 30px; 
+    }
+    
+    .result-container .title span {
+        position: relative;
+        max-width: 100%;
+        text-align: left;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .result-container .content {
+        font: 12px "microsoft yahei", arail;
+        padding: 0;
+    }
+    
+    .result-container .content .result {
+        font-size: 12px;
+        overflow: hidden;
+        border-bottom: 1px solid #efefef;
+        padding: 8px 0;
+    }
+    
+    .dict-spell p {
+        display: block;
+        font-size: 14px;
+    }
+    
+    .dict-spell p a {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcUlEQVQ4y2P4//8/AyUYQhAH3gNxA7IAIQPmo/H3g/QA8XkgFiBkwHyoYnRQABVfj88AmGZcTuuHyjlgMwBZM7IE3NlQGhQe65EN+I8Dw8MLGgYoFpFqADK/YUAMwOsFigORatFIlYRElaRMWmaiBAMAp0n+3U0kqkAAAAAASUVORK5CYII=");
+        cursor: pointer;
+        opacity: 0.5;
+        width: 16px;
+        height: 16px;
+        margin-left: 8px;
+        display: inline-block;
+        position: relative;
+        top: 2px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+    }
+    
+    .dict-spell p span,
+    .dict-spell p b,
+    .dict-spell p a {
+        display: inline-block;
+        vertical-align: baseline;
+    }
+    
+    .dict-spell p b:before {
+        content: "["
+    }
+    
+    .dict-spell p b:after {
+        content: "]"
+    }
+    
+    .dict-spell p a:hover {
+        opacity: 1;
+    }
+    
+    .dict-comment {
+        padding: 5px 0;
+    }
+    
+    .result-container .content .more {
+        padding-top: 8px;
+    }
 </style>
 <div id="idict" class="result-container" data-text="hello" style="display: none;">
-  <div class="tip-arrow" style="left: 65px;display: none;"><em></em><ins></ins></div>
-  <div class="title"><span>hello</span></div>
-  <div class="content">
-    <p class="loading-tip" style="display: none;"> 努力翻译中...</p>
-    <p class="error-tip" style="display: none;"></p>
-    <div class="result">
-      <div class="dict-spell">
-        <p>
-          <span>英</span>
-          <b>vəut</b>
-          <a href="javascript:void(0);" onclick="this.querySelector('audio').play();" class="operate-btn op-sound">
-            <audio src="http://media.shanbay.com/audio/us/hello.mp3"></audio>
-          </a>
-        </p>
-      </div>
-      <div class="dict-comment">
-        <p>
-              <b>v.</b>
-              <span>投票，选举</span>; &nbsp;
-              <span>提议</span>; &nbsp;
-              <span>投票表决</span>; &nbsp;
-              <span>公认，由舆论决定</span>; &nbsp;
-        </p>
-      </div>
+    <div class="tip-arrow" style="left: 65px;display: none;"><em></em><ins></ins></div>
+    <div class="title"><span>hello</span></div>
+    <div class="content">
+        <p class="loading-tip" style="display: none;"> 努力翻译中...</p>
+        <p class="error-tip" style="display: none;"></p>
+        <div class="result">
+            <div class="dict-spell">
+                <p>
+                    <span>英</span>
+                    <b>vəut</b>
+                    <a href="javascript:void(0);" onclick="this.querySelector('audio').play();" class="operate-btn op-sound">
+                        <audio src="http://media.shanbay.com/audio/us/hello.mp3"></audio>
+                    </a>
+                </p>
+            </div>
+            <div class="dict-comment">
+                <p>
+                    <b>v.</b>
+                    <span>投票，选举</span>; &nbsp;
+                    <span>提议</span>; &nbsp;
+                    <span>投票表决</span>; &nbsp;
+                    <span>公认，由舆论决定</span>; &nbsp;
+                </p>
+            </div>
+        </div>
+        <div class="more">
+            <p>
+                <a href target="_blank">查看更多</a>
+            </p>
+        </div>
     </div>
-    <div class="more">
-      <p>
-        <a href target="_blank">查看更多</a>
-      </p>
-    </div>
-  </div>
 </div>

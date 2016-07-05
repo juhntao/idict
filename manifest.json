@@ -16,13 +16,13 @@
 
   "background": {
       "persistent": true,
-      "scripts": ["lib/Zepto.js", "lib/config.js", "lib/shanbay_oauth2.js", "js/shanbay.api.js", "js/background.js"]
+      "scripts": ["lib/jquery-3.0.0.min.js", "lib/config.js", "lib/shanbay_oauth2.js", "js/shanbay.api.js", "js/background.js"]
    },
 
   "content_scripts": [ {
     "all_frames": true,
     "css":["css/content.css"],
-    "js": ["lib/Zepto.js", "js/tipview.js", "/js/selection.js"],
+    "js": ["lib/jquery-3.0.0.min.js", "js/tipview.js", "/js/selection.js"],
     "matches": ["<all_urls>"]
       
   } ],

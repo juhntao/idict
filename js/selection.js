@@ -1,72 +1,68 @@
-var m_is_dict_box_show = false;
-$(function(){
-    createSelectBox();
-    initTipView();
-})
+(function($) {
+    var m_is_dict_box_show = false; 
+    $(function() {
+        initTipView();
 
-$("body").on("mousedown", function(event){
-    if(!m_is_dict_box_show)
-        hideSelectBox();
-});
+        $("body").on("mousedown", function(event) {   
+           hideSelectBox();  hideDictBox();
+        }).on("mouseup", function(event) { 
 
-$("body").on("mouseup", function(event){
-    if (m_is_dict_box_show) return;
-    var selectText = window.getSelection().toString().trim();
-    if(selectText == "") return;
-    var x = event.clientX + window.scrollX + 5;
-    var y = event.clientY + window.scrollY + 10;
-    showSelectBox(x, y);
-});
+            if (m_is_dict_box_show) return;
 
-function createSelectBox(){
-    var html = '<div class="selectbox" style="display:none;">' + 
-                    '<img class="icon" src="' + chrome.extension.getURL("img/icon19.png") + '"/>' + 
-                '</div>';
-    $("body").append(html);
-    
-    $(".selectbox").on("mousedown", function(){
-        m_is_dict_box_show = true;
-        showDictBox();
-    });
-}
+            var selectText = window.getSelection().toString().trim();
+            if (selectText == "") return; 
+            showSelectBox(event.clientX + window.scrollX + 5,event.clientY + window.scrollY + 10 );
+        }).on("mousedown", '#idict', function(e) {   
+            return false;
+        }).on("mousedown", '.selectbox', function(e) {  
+            m_is_dict_box_show = true;
+            showDictBox();
+            return false;
+        });
+        $("body").append('<div class="selectbox" style="display:none;">' +
+            '<img class="icon" src="' + chrome.extension.getURL("img/icon19.png") + '"/>' +
+            '</div>');
+    }); 
+ 
+    function showSelectBox(x, y) {
+        $(".selectbox").css({
+            "left": x  ,
+              "top": y    
+        }).show(); 
+    }
 
-function showSelectBox(x, y){
-    $(".selectbox").css("left", x + "px");
-    $(".selectbox").css("top", y + "px");
-    $(".selectbox").show();
-}
-function hideSelectBox(){
-    $(".selectbox").hide();
-}
+    function hideSelectBox() {
+        $(".selectbox").hide();
+    }
 
-function showDictBox(){
-    hideSelectBox();
-    var selection = window.getSelection();
-    if(!selection) return hideDictBox();
-    var selectRange = selection.getRangeAt(0).getBoundingClientRect();
-    var selectText = selection.toString().trim();
-    if (selectText === "" || !(/^[^\u4e00-\u9fa5]+$/.test(selectText)))
-        return hideDictBox();
+    function showDictBox() {
+   
+        var selection = window.getSelection();
+        if (!selection) return hideDictBox();
+        var selectRange = selection.getRangeAt(0).getBoundingClientRect();
+        var selectText = selection.toString().trim();
+        if (selectText === "" || !(/^[^\u4e00-\u9fa5]+$/.test(selectText)))
+            return hideDictBox();
 
-    console.log("select text:",selectText);
-    showLoadingTipView(selectRange, selectText);
-    $("#idict").on("mouseleave", function() {
-        hideDictBox();
-    });
-    chrome.runtime.sendMessage({action:'translate', q:selectText}, function(response){
-        if(chrome.runtime.lastError){
-            console.log(chrome.runtime.lastError);
-        }
-        console.log(response);
-        if(response.status == "ok"){
-            setTipViewContent(response);
-        }else{
-            showErrorTipView(response.message)
-        }
-    });
-}
+        showLoadingTipView(selectRange, selectText);
 
-function hideDictBox(){
-    hideTipView();
-    m_is_dict_box_show = false;
-}
+        chrome.runtime.sendMessage({
+            action: 'translate',
+            q: selectText
+        }, function(response) {
+            if (chrome.runtime.lastError) { 
+            } 
+            if (response.status == "ok") {
+                setTipViewContent(response);
+            } else {
+                showErrorTipView(response.message)
+            }
+        });
+             hideSelectBox();
+    }
+
+    function hideDictBox() {
+        hideTipView();
+        m_is_dict_box_show = false;
+    }
+})(jQuery);
